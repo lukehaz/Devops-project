@@ -1,0 +1,25 @@
+{
+  "name": "liatrio-int",
+  "version": "1.0.0",
+  "description": "simple single endpoint web-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukehaz/Liatrio-int.git"
+  },
+  "keywords": [
+    "liatrio"
+  ],
+  "author": "luke hazelton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukehaz/Liatrio-int/issues"
+  },
+  "homepage": "https://github.com/lukehaz/Liatrio-int#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
