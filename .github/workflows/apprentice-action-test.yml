@@ -17,5 +17,5 @@ jobs:
     - name: run tests
       run: |
         docker pull ghcr.io/liatrio/github-actions/apprentice-action:latest
-        docker run ghcr.io/liatrio/github-actions/apprentice-action:latest
+        docker run -p 80:80 ghcr.io/liatrio/github-actions/apprentice-action:latest
 
