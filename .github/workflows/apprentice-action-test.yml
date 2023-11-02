@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,13 +12,21 @@ jobs:
     - name: build Docker image
       run: |
         docker build -t lukehaz/latest-d-image .
-        docker run -p 80:80 lukehaz/latest-d-image
-  test:
+
+  run-container:
     needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: run Docker container
+      run: docker run -p 80:80 lukehaz/latest-d-image
+
+  test:
+    needs: run-container
     runs-on: ubuntu-latest
     steps: 
     - name: run tests
       run: |
         docker pull ghcr.io/liatrio/github-actions/apprentice-action:latest
         docker run -p 80:80 ghcr.io/liatrio/github-actions/apprentice-action:latest
+
 
