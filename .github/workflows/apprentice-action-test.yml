@@ -11,7 +11,7 @@ jobs:
     - name: build Docker image
       run: |
         docker build -t lukehaz/latest-d-image .
-        docker run -p 80:80 ghcr.io/lukehaz/Liatrio-int/latest-d-image
+        docker run -p 80:80 ghcr.io/lukehaz/latest-d-image
   test:
     needs: build
     runs-on: ubuntu-latest
