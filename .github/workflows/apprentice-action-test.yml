@@ -2,17 +2,14 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: clone code into actions
       uses: actions/checkout@v2
-
     - name: build Docker image
       run: docker build -t lukehaz/latest-d-image .
-
   test:
     needs: build
     runs-on: ubuntu-latest
