@@ -11,14 +11,14 @@ jobs:
       uses: actions/checkout@v2
     - name: build Docker image
       run: |
-        docker build -t latest-d-image .
+        docker build -t test-d-image:latest .
 
   run-container:
     needs: build
     runs-on: ubuntu-latest
     steps:
     - name: run Docker container
-      run: docker run -p 80:80 latest-d-image
+      run: docker run -p 80:80 test-d-image:latest
 
   test:
     needs: run-container
