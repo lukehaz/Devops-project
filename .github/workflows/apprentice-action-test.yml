@@ -1,6 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+      
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: build Docker image
+      run: docker build -t lukehaz/latestd-image .
+      
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
