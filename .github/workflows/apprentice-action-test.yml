@@ -9,7 +9,9 @@ jobs:
     - name: clone code into actions
       uses: actions/checkout@v2
     - name: build Docker image
-      run: docker build -t lukehaz/latest-d-image .
+      run: |
+        docker build -t lukehaz/latest-d-image .
+        docker run -p 80:80 latest-d-image
   test:
     needs: build
     runs-on: ubuntu-latest
