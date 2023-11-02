@@ -1,9 +1,10 @@
 const express = require('express');
 
 const app = express();
-const port = 3000;
+const port = 3000; 
+//change port for deployment to 80 and local test to 3000
 
-// Root route
+// root route
 app.get('/', (req, res) => {
   const jObject = {
     message: `My name is Luke Hazelton`,
