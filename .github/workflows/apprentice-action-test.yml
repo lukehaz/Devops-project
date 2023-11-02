@@ -1,6 +1,20 @@
+name: build Docker image and test the application
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
+
     steps:
+    - name: fetch the latest code
+      uses: actions/checkout@v2
+
+    - name: build the Docker image
+      run: docker build -t lukehaz/testing-d-image .
+
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
