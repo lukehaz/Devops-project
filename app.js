@@ -10,7 +10,10 @@ app.get('/', (req, res) => {
     message: `My name is Luke Hazelton`,
     timestamp: Date.now(),
   };
-  res.json(jObject);
+
+  const formattedJobj = JSON.stringify(jObject, null, 2);
+  res.set('Content-Type', 'application/json');
+  res.send(formattedJobj);
 });
 
 app.listen(port, () => {

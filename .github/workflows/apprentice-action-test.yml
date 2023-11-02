@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: build Docker image
-      run: docker build -t lukehaz/latestd-image .
+      run: docker build -t lukehaz/latest-d-image .
       
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
