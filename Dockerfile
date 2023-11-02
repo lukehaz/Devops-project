@@ -4,5 +4,5 @@ RUN npm init -y
 RUN npm install express
 COPY . .
 CMD [ "node", "app.js" ]
-EXPOSE 3000
+EXPOSE 80
 

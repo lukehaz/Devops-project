@@ -1,7 +1,7 @@
 const express = require('express');
 
 const app = express();
-const port = 3000; 
+const port = 80; 
 //change port for deployment to 80 and local test to 3000
 
 // root route
