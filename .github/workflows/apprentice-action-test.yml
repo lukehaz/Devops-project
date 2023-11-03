@@ -1,4 +1,4 @@
-name: build and run Docker image locally and run Liatrio tests
+name: Build-Test-Push
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-run-docker:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,4 +24,16 @@ jobs:
            docker pull ghcr.io/liatrio/github-actions/apprentice-action:latest
            docker run -p 8000:8000 ghcr.io/liatrio/github-actions/apprentice-action:latest
 
-        
+  push-to-docker-hub:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: log in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER_NAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: tag Docker image
+        run: docker tag test-image ${{ secrets.DOCKER_USER_NAME }}/test-image
+
+      - name: push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USER_NAME }}/test-image
