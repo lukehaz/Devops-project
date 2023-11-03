@@ -1,4 +1,4 @@
-name: Docker Build-Push-Test
+name: build and run Docker image locally
 
 on:
   push:
@@ -6,40 +6,15 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-run-docker:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout code
-      uses: actions/checkout@v2
+      - name: fetch code
+        uses: actions/checkout@v2
 
-    - name: build Docker image
-      run: |
-        docker build -t test-d-image:latest .
+      - name: build Docker image
+        run: docker build -t test-image .
 
-    - name: push Docker image to docker Hub
-      run: |
-        echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker tag test-d-image:latest ${{ secrets.DOCKER_USERNAME }}/test-d-image:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/test-d-image:latest
-
-  run-container:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: run Docker container
-      run: docker run -p 80:80 ${{ secrets.DOCKER_USER_NAME }}/test-d-image:latest
-
-  test:
-    needs: run-container
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Run tests
-      run: |
-        docker pull ghcr.io/liatrio/github-actions/apprentice-action:latest
-        docker run -p 80:80 ghcr.io/liatrio/github-actions/apprentice-action:latest
+      - name: run Docker container
+        run: docker run -d -p 8080:80 test-image
