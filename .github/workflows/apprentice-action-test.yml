@@ -32,6 +32,9 @@ jobs:
       - name: log in to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USER_NAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: list Docker images(debug)
+        run: docker images
+
       - name: tag Docker image
         run: docker tag test-image ${{ secrets.DOCKER_USER_NAME }}/test-image
 
