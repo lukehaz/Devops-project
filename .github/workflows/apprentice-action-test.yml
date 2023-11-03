@@ -29,7 +29,7 @@ jobs:
 
     steps:
     - name: run Docker container
-      run: docker run -p 80:80 ${{ secrets.DOCKER_USERNAME }}/test-d-image:latest
+      run: docker run -p 80:80 ${{ secrets.DOCKER_USER_NAME }}/test-d-image:latest
 
   test:
     needs: run-container
