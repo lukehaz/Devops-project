@@ -1,4 +1,4 @@
-name: build and run Docker image locally
+name: build and run Docker image locally and run Liatrio tests
 
 on:
   push:
@@ -18,3 +18,10 @@ jobs:
 
       - name: run Docker container
         run: docker run -d -p 8080:80 test-image
+
+      - name: run tests
+        run: |
+           docker pull ghcr.io/liatrio/github-actions/apprentice-action:latest
+           docker run -p 80:80 ghcr.io/liatrio/github-actions/apprentice-action:latest
+
+        
