@@ -33,3 +33,11 @@ jobs:
 
       - name: push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER_NAME }}/test-image
+      - name: Log in to Google Cloud
+        run: gcloud auth login ${{ secrets.GCLOUD_EMAIL }} --password-stdin <<<"${{ secrets.GCLOUD_PASSWORD }}"
+
+      - name: set image and restart Kubernetes deployment
+        run: |
+          gcloud container clusters get-credentials ld-cluster-1 --region=us-central1
+          kubectl set image deployment/ld-deployment2 test-image=docker.io/lukehaz/test-image:latest
+          kubectl rollout restart deployment/ld-deployment2
