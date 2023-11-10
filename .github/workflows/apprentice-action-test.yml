@@ -1,4 +1,4 @@
-name: Build-Test-Push
+name: Build-Test-Push-Deploy
 
 on:
   push:
