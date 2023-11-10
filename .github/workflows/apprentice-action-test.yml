@@ -44,6 +44,16 @@ jobs:
 
       - name: Use gcloud CLI
         run: gcloud info
+
+      - name: setup gke-gcloud-auth-plugin
+        uses: simenandre/setup-gke-gcloud-auth-plugin@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          cluster_name: "ld-cluster-1"
+          cluster_region: "us-central1"
+
+      - name: authenticate plugin with Google Cloud
+        run: gke-gcloud-auth-plugin authenticate
       
       - name: set image and restart Kubernetes deployment
         run: |
