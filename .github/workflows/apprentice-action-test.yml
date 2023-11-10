@@ -33,9 +33,12 @@ jobs:
 
       - name: push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER_NAME }}/test-image
-      - name: Log in to Google Cloud
-        run: gcloud auth login ${{ secrets.GCLOUD_EMAIL }} --password-stdin <<<"${{ secrets.GCLOUD_PASSWORD }}"
-
+        
+      - name: authenticate and login to Google Cloud using service account key
+        run: |
+          echo "${{ secrets.GCLOUD_SERVICE_KEY }}" > gcloud-service-key.json
+          gcloud auth activate-service-account --key-file=gcloud-service-key.json
+      
       - name: set image and restart Kubernetes deployment
         run: |
           gcloud container clusters get-credentials ld-cluster-1 --region=us-central1
