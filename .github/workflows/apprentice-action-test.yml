@@ -34,10 +34,16 @@ jobs:
       - name: push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER_NAME }}/test-image
         
-      - name: authenticate and login to Google Cloud using service account key
-        run: |
-          echo "${{ secrets.GCLOUD_SK2 }}" > gcloud-service-key.json
-          gcloud auth activate-service-account --key-file=gcloud-service-key.json
+      - name: authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_SK2 }}
+
+      - name: set up cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - name: Use gcloud CLI
+        run: gcloud info
       
       - name: set image and restart Kubernetes deployment
         run: |
