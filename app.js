@@ -7,7 +7,7 @@ const port = 80;
 // root route
 app.get('/', (req, res) => {
   const jObject = {
-    message: `My name is Luke Hazelton :)`,
+    message: `My name is Luke Hazelton SANITY CHECK`,
     timestamp: Date.now(),
   };
   res.json(jObject);
