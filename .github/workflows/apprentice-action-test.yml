@@ -36,7 +36,7 @@ jobs:
         
       - name: authenticate and login to Google Cloud using service account key
         run: |
-          echo "${{ secrets.GCLOUD_SERVICE_KEY }}" > gcloud-service-key.json
+          echo "${{ secrets.GCLOUD_SK2 }}" > gcloud-service-key.json
           gcloud auth activate-service-account --key-file=gcloud-service-key.json
       
       - name: set image and restart Kubernetes deployment
