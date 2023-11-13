@@ -7,12 +7,12 @@ const port = 80;
 // root route
 app.get('/', (req, res) => {
   const jObject = {
-    message: `My name is Luke Hazelton`,
+    message: `My name is Luke Hazelton :)`,
     timestamp: Date.now(),
   };
-  const formattedJobj = JSON.stringify(jObject, null, 2);
-  res.set('Content-Type', 'application/json');
-  res.send(formattedJobj);
+  const formattedJobj = JSON.stringify(jObject, null, 2);  //fc
+  res.set('Content-Type', 'application/json');             //fc
+  res.send(formattedJobj);                                 //fc
   //res.json(jObject);
 });
 
