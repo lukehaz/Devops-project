@@ -7,7 +7,7 @@ const port = 80;
 // root route
 app.get('/', (req, res) => {
   const jObject = {
-    message: `My name is Luke Hazelton :)`,
+    message: `My name is Luke Hazelton`,
     timestamp: Date.now(),
   };
   const formattedJobj = JSON.stringify(jObject, null, 2);  //fc
